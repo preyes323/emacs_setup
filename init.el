@@ -48,6 +48,9 @@
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 (setq make-backup-files nil)
+(show-paren-mode 1)
+(eldoc-mode 1)
+(setenv "PAGER" "/bin/cat")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
