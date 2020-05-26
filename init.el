@@ -4,12 +4,10 @@
                            ("marmalade" . "https://marmalade-repo.org/packages/")
                            ("melpa" . "https://melpa.org/packages/")))
   (package-initialize)
-  ;; i always fetch the archive contents on startup and during compilation, which is slow
   (package-refresh-contents)
   (unless (package-installed-p 'use-package)
     (package-install 'use-package))
   (require 'use-package)
-  ;; i don't really know why this isn't the default...
   (require 'use-package-ensure)
   (setq use-package-always-ensure t))
 
