@@ -33,7 +33,9 @@
     :ensure t)
   (yas-reload-all)
   (add-hook 'ruby-mode-hook 'yas-minor-mode)
-  (add-hook 'js-mode-hook 'yas-minor-mode))
+  (add-hook 'js-mode-hook 'yas-minor-mode)
+  (add-hook 'html-mode-hook 'yas-minor-mode)
+  (add-hook 'css-mode-hook 'yas-minor-mode))
 
 (use-package swiper
   :ensure t
