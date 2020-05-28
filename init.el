@@ -32,7 +32,7 @@
   (use-package yasnippet-snippets
     :ensure t)
   (yas-reload-all)
-  (add-hook 'ruby-mode-hook 'yas-minor-mode)
+  (add-hook 'enh-ruby-mode-hook 'yas-minor-mode)
   (add-hook 'js-mode-hook 'yas-minor-mode)
   (add-hook 'html-mode-hook 'yas-minor-mode)
   (add-hook 'css-mode-hook 'yas-minor-mode))
@@ -61,7 +61,32 @@
 (use-package rainbow-mode
   :ensure t
   :init
-    (add-hook 'prog-mode-hook 'rainbow-mode))
+  (add-hook 'prog-mode-hook 'rainbow-mode))
+
+(use-package enh-ruby-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist
+	       '("\\(?:\\.rb\\|ru\\|rake\\|thor\\|jbuilder\\|gemspec\\|podspec\\|/\\(?:Gem\\|Rake\\|Cap\\|Thor\\|Vagrant\\|Guard\\|Pod\\)file\\)\\'" . enh-ruby-mode))
+  (setq enh-ruby-deep-indent-paren nil))
+
+(use-package company
+  :ensure t
+  :config
+  (setq-local company-idle-delay 0.2)
+  (add-hook 'after-init-hook 'global-company-mode))
+
+(use-package inf-ruby
+  :ensure t
+  :config
+  (add-hook 'enh-ruby-mode-hook 'inf-ruby-minor-mode)
+  (add-hook 'compilation-filter-hook 'inf-ruby-auto-enter))
+
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-mode +1)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 ;; functions
 
@@ -105,7 +130,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (swiper ivy yasnippet-snippets yasnippet js-mode undo-tree use-package))))
+    (projectile company inf-ruby company-mode enh-ruby-mode swiper ivy yasnippet-snippets yasnippet js-mode undo-tree use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
