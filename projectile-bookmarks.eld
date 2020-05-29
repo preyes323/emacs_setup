@@ -1,1 +1,1 @@
-("~/Dropbox/LS-TA/dom_asynchronous_js/" "~/.emacs.d/")
+("~/.emacs.d/" "~/Dropbox/LS-TA/railstutors/" "~/Dropbox/LS-TA/dom_asynchronous_js/")

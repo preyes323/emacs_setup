@@ -88,6 +88,18 @@
   (projectile-mode +1)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
+(use-package ag
+  :ensure t)
+
+(use-package ibuffer-projectile
+  :ensure t
+  :config
+  (add-hook 'ibuffer-hook
+    (lambda ()
+      (ibuffer-projectile-set-filter-groups)
+      (unless (eq ibuffer-sorting-mode 'alphabetic)
+        (ibuffer-do-sort-by-alphabetic)))))
+
 ;; functions
 
 (defun my-set-jsx-indentation ()
@@ -122,6 +134,9 @@
                            (?\" . ?\")
                            ))
 (electric-pair-mode t)
+(global-set-key (kbd "C-c C-w") 'whitespace-mode)
+(global-set-key (kbd "C-c d w") 'delete-trailing-whitespace)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -130,7 +145,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (projectile company inf-ruby company-mode enh-ruby-mode swiper ivy yasnippet-snippets yasnippet js-mode undo-tree use-package))))
+    (ibuffer-projectile ag projectile company inf-ruby company-mode enh-ruby-mode swiper ivy yasnippet-snippets yasnippet js-mode undo-tree use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
