@@ -100,6 +100,9 @@
       (unless (eq ibuffer-sorting-mode 'alphabetic)
         (ibuffer-do-sort-by-alphabetic)))))
 
+(use-package haml-mode
+  :ensure t)
+
 ;; functions
 
 (defun my-set-jsx-indentation ()
@@ -119,6 +122,7 @@
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 (setq make-backup-files nil)
+(setq-default indent-tabs-mode nil)
 (setq auto-save-default nil)
 (show-paren-mode 1)
 (eldoc-mode 1)
@@ -145,7 +149,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ibuffer-projectile ag projectile company inf-ruby company-mode enh-ruby-mode swiper ivy yasnippet-snippets yasnippet js-mode undo-tree use-package))))
+    (haml-mode ibuffer-projectile ag projectile company inf-ruby company-mode enh-ruby-mode swiper ivy yasnippet-snippets yasnippet js-mode undo-tree use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
