@@ -106,6 +106,14 @@
 (use-package yaml-mode
   :ensure t)
 
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
+
 ;; functions
 
 (defun my-set-jsx-indentation ()
@@ -152,7 +160,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (yaml-mode haml-mode ibuffer-projectile ag projectile company inf-ruby company-mode enh-ruby-mode swiper ivy yasnippet-snippets yasnippet js-mode undo-tree use-package))))
+    (markdown-mode yaml-mode haml-mode ibuffer-projectile ag projectile company inf-ruby company-mode enh-ruby-mode swiper ivy yasnippet-snippets yasnippet js-mode undo-tree use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
