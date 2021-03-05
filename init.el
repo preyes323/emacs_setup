@@ -1,8 +1,8 @@
 (eval-and-compile
   (require 'package)
   (setq package-archives '(("elpa" . "https://elpa.gnu.org/packages/")
-                           ("marmalade" . "https://marmalade-repo.org/packages/")
                            ("melpa" . "https://melpa.org/packages/")))
+  
   (package-initialize)
   (package-refresh-contents)
   (unless (package-installed-p 'use-package)
@@ -11,6 +11,7 @@
   (require 'use-package-ensure)
   (setq use-package-always-ensure t))
 
+;; ("marmalade" . "http://marmalade-repo.org/packages/")
 ;; packages
 
 (use-package ivy
@@ -117,6 +118,9 @@
 (use-package sass-mode
   :ensure t)
 
+(use-package typescript-mode
+  :ensure t)
+
 ;; functions
 
 (defun my-set-jsx-indentation ()
@@ -124,16 +128,31 @@
   (setq-local js-indent-level 2))
 (add-hook 'js-mode-hook 'my-set-jsx-indentation)
 
+(defun my-set-typescript-indentation ()
+  "Set indent level to 2"
+  (setq-local typescript-indent-level 2))
+(add-hook 'typescript-mode-hook 'my-set-typescript-indentation)
+
+(defun my-set-css-indentation ()
+  "Set indent level to 2"
+  (setq-local css-indent-offset 2))
+(add-hook 'css-mode-hook 'my-set-css-indentation)
+
 (defun kill-current-buffer ()
   "Kills the current buffer."
   (interactive)
   (kill-buffer (current-buffer)))
 (global-set-key (kbd "C-x k") 'kill-current-buffer)
 
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  (ansi-color-apply-on-region compilation-filter-start (point-max)))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+
 ;; configs and key bindings
 
 (tool-bar-mode -1)
-(scroll-bar-mode -1)
+;; (scroll-bar-mode -1)
 (menu-bar-mode -1)
 (setq make-backup-files nil)
 (setq-default indent-tabs-mode nil)
@@ -163,7 +182,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (sass-mode markdown-mode yaml-mode haml-mode ibuffer-projectile ag projectile company inf-ruby company-mode enh-ruby-mode swiper ivy yasnippet-snippets yasnippet js-mode undo-tree use-package))))
+    (typescript-mode typescript magit sass-mode markdown-mode yaml-mode haml-mode ibuffer-projectile ag projectile company inf-ruby company-mode enh-ruby-mode swiper ivy yasnippet-snippets yasnippet js-mode undo-tree use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
